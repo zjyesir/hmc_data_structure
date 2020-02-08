@@ -1,0 +1,4 @@
+#include "class.h"
+getAge(){
+    
+}
