@@ -1,8 +1,11 @@
 #include <stdio.h>
-#include <string.h>
-#include <time.h>
-#include <stdlib.h>
-#define STUDENT_NUMBER 5;
+// #include <string.h>
+// #include <time.h>
+// #include <stdlib.h>
+// #include <math.h>
+
+#define STUDENT_NUMBER 26;
+
 struct Student
 {
     /* data */
@@ -11,6 +14,22 @@ struct Student
     int birthYear;
     struct Student *nextStudent;
 };
+
+
+struct Film
+{
+      /* data */
+    int releaseYear; // 发布年
+    char *releaseCompany; //电影公司
+    // 思考 为啥不用int?
+    long box_office; // 票房，以人民币为单位
+    char *director; //导演
+    char **mainActorOrActress; // 主要的演员
+    int length; //电影时长
+    // to be added ...
+  
+};
+
 
 int getCurrentYear()
 {
@@ -23,6 +42,7 @@ int getCurrentYear()
 
 int main(int argc, char const *argv[])
 {
+    
     /* code */
     printf("welcome to data structure");
     struct Student students[5];
