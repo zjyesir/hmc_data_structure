@@ -1,8 +1,8 @@
 #include <stdio.h>
-// #include <string.h>
-// #include <time.h>
-// #include <stdlib.h>
-// #include <math.h>
+#include <string.h>
+#include <time.h>
+#include <stdlib.h>
+#include <math.h>
 
 #define STUDENT_NUMBER 26;
 
@@ -152,7 +152,8 @@ int main(int argc, char const *argv[])
      
      */
 
-    // 数据结构 第2章，链式存储
+
+    // 数据结构 第2章，链式存储 创建链表
     // 第1步 定义 数据节点结构
     //要typedef后才能 sizeof
     typedef struct dateNode
