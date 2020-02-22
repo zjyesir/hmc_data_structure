@@ -2,5 +2,7 @@
     "files.associations": {
         "math.h": "c",
         "chrono": "c"
-    }
+    },
+    "files.autoGuessEncoding": true,
+    "files.encoding": "gbk"
 }
