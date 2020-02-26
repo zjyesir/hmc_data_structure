@@ -124,14 +124,14 @@ void deleteOperationInArray()
     int intArray[5] = {1, 2, 3, 4, 5};
     int deletePosition = 1;
     // 第1步，将从 deletePosition之后的元素前移
-    for (int i = deletePosition; i < 5; i++)
+    for (int i = deletePosition; i < 4; i++)
     {
         intArray[i] = intArray[i + 1];
     }
 
     //  第2步，验证是否操作成功
     printf("\n");
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 5; i++)
     {
         printf(" %d", intArray[i]);
     }
@@ -183,10 +183,10 @@ void createLinkedListExample()
 // 5个知识点的示例代码，如要单独看一个，请把其他4个先注释掉
 int main(int argc, char const *argv[])
 {
-    structExample();
-    showAddressInMemory();
-    insertOperationInArray();
-    deleteOperationInArray();
+    // structExample();
+    // showAddressInMemory();
+    // insertOperationInArray(); 
+    // deleteOperationInArray();
     createLinkedListExample();
     return 0;
 }
