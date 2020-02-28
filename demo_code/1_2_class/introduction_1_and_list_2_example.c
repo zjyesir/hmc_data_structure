@@ -173,11 +173,21 @@ void createLinkedListExample()
     // 第2步验证是否创建成功，遍历列表
     struct dateNode *cursor = listHead;
     printf("\n");
-    while (cursor != NULL)
-    {
-        printf(" %s ", cursor->dateName);
-        cursor = cursor->nextData;
+    // while (cursor != NULL)
+    // {
+    //     printf(" %s ", cursor->dateName);
+    //     cursor = cursor->nextData;
+    // };
+
+
+    for(;cursor!=NULL;cursor=cursor->nextData){
+         printf(" %s ", cursor->dateName);
     }
+
+
+    // int a[][3] = {{1,2,3}};
+    // int a[3][3]={{1,2,3},{4,5,6},{7,8,9}};
+
 }
 
 // 5个知识点的示例代码，如要单独看一个，请把其他4个先注释掉
@@ -190,3 +200,5 @@ int main(int argc, char const *argv[])
     createLinkedListExample();
     return 0;
 }
+
+
