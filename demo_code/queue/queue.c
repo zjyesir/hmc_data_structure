@@ -16,14 +16,17 @@ typedef struct Queue
     /* data */
 } Queue;
 
+// 判断队列是否满了
 bool isQueueFull(Queue *queue){
     return  queue!=NULL &&queue->elementCount == MAX_QUEUE_SIZE;
 }
 
+// 判断队列是否空
 bool isQueueEmpty(Queue *queue){
     return  queue != NULL && queue->elementCount == 0;
 }
 
+// 打印队列内容，从对头 ->队列
 void showQueue(Queue *queue)
 {
     if (queue == NULL)
@@ -34,25 +37,31 @@ void showQueue(Queue *queue)
     // if (queue->front == -1 || queue->front == queue->rear) //循环队列，列表尾(可入列的地方)赶上列表头(可以出列的地方)
     if (isQueueEmpty(queue)) //循环队列，列表尾(可入列的地方)赶上列表头(可以出列的地方)
     {
-        printf(" \n the queue is empty ");
+        printf(" \n (queue empty) ");
         return;
     }
     int front = queue->front;
     int rear = queue->rear;
     printf("\n");
-    // 若队列满了，rear == front 为了让下面while循环开始，rear往-1方向移动一位
+    // 若队列满了，rear == front 为了让下面while循环开始,因为while的条件是front !=front。
+    bool queueIsFullSoToBeginTheWhile = false;
     if(isQueueFull(queue)){
-        rear = (rear-1)% MAX_QUEUE_SIZE;
+        queueIsFullSoToBeginTheWhile = true;
     }
-    while (front != rear )
+    int stopFlag =  (rear+MAX_QUEUE_SIZE)% MAX_QUEUE_SIZE;
+    while (front != rear ||queueIsFullSoToBeginTheWhile)
     {
         printf(" %d ", queue->array[front]);
         front = (front + 1) % MAX_QUEUE_SIZE;
+        // 此条件只用一次即失效
+        if(queueIsFullSoToBeginTheWhile){
+            queueIsFullSoToBeginTheWhile = false;
+        }
     }
-    printf("\n");
+    // printf("\n");
 }
 
-// 加入队列
+// 加入队列(插入)
 int enqueue(Queue *queue, elementType value)
 {
     if (queue == NULL)
@@ -63,7 +72,7 @@ int enqueue(Queue *queue, elementType value)
     // 队列已满
     if (isQueueFull(queue))
     {
-        printf("\n the queue is Full");
+        printf("\n the queue is Full,you can't do enqueue operation");
         return ERROR;
     }
     queue->array[queue->rear] = value;
@@ -72,12 +81,13 @@ int enqueue(Queue *queue, elementType value)
     // 当然这存在耦合，先不管
     
     queue->rear = (queue->rear + 1) % MAX_QUEUE_SIZE;
-    
+    printf("\n insert value : %d into the queue",value);
     showQueue(queue);
     
     return OK;
 }
 
+// 出列(删除)
 int dequeue(Queue *queue, elementType *valuePointer)
 {
     if (queue == NULL)
@@ -88,7 +98,7 @@ int dequeue(Queue *queue, elementType *valuePointer)
     //  if (queue->front == -1 || queue->front == queue->rear) //循环队列，列表尾(可入列的地方)赶上列表头(可以出列的地方)
     if (isQueueEmpty(queue)) //循环队列，列表尾(可入列的地方)赶上列表头(可以出列的地方)
     {
-        printf("\n the queue is Empty ");
+        printf("\n the queue is Empty , so you can't do dequeue operation");
         return ERROR;
     }
     if (valuePointer != NULL)
@@ -98,8 +108,9 @@ int dequeue(Queue *queue, elementType *valuePointer)
     printf("\n value : %d out of the queue",queue->array[queue->front]);
     queue->elementCount --;
     // 同enqueue,注意这个函数的顺序
-    showQueue(queue);
+    
     queue->front = (queue->front + 1) % MAX_QUEUE_SIZE;
+    showQueue(queue);
     return OK;
 }
 
@@ -110,34 +121,59 @@ Queue *createEmptyQueue()
     queue->front = 0; //
     queue->rear = 0;   // 即将存“入队列元素数值”的地方
     queue->elementCount = 0;
-    // Queue->length = 0;
     return queue;
 }
 
+// 先入列，在出列
+void testEnqueueFirstAndDequeue(){
+    /* code */
+    // 创建空的队列
+    Queue *queue = createEmptyQueue();
+
+    // 入队列
+    for (int i = 1; i <= 15; ++i)
+    {
+        enqueue(queue, i);
+    }
+    // 出队列
+    for (int i = 0; i < 5; ++i)
+    {
+        elementType *valueP;
+        dequeue(queue,valueP);
+        // showQueue(Queue);
+    }
+    free(queue);
+}
+
+// 随机 入/出 队列，测试用例要包含 错误案例
+void testEnqueueAndDequeueInCross(){
+     /* code */
+    // 创建空的队列
+    Queue *queue = createEmptyQueue();
+    // showQueue(queue);
+    elementType *p ;
+    int enqueueValue = 1;
+    dequeue(queue,p);
+     enqueue(queue, enqueueValue++);
+     dequeue(queue,p);
+     enqueue(queue, enqueueValue++);
+     dequeue(queue,p);
+     enqueue(queue, enqueueValue++);
+     dequeue(queue,p);
+     dequeue(queue,p);
+     dequeue(queue,p);
+
+
+
+    
+    free(queue);
+}
 
 
 int main(int argc, char const *argv[])
 {
-    /* code */
-    // 创建空的队列
-    Queue *queue = createEmptyQueue();
-    // showQueue(queue);
-
-    // 入队列
-    for (int i = 1; i <= 10; ++i)
-    {
-        printf("insert %d : \n",i);
-        enqueue(queue, i);
-        // printf("\n after insert %d rear = %d",i,queue->rear);
-        // showQueue(queue);
-    }
-    // 出队列
-    // for (int i = 0; i < 5; ++i)
-    // {
-    //     elementType *valueP;
-    //     dequeue(Queue,valueP);
-    //     showQueue(Queue);
-    // }
+   testEnqueueFirstAndDequeue();
+//    testEnqueueAndDequeueInCross();
 
     return 0;
 }
