@@ -1,8 +1,9 @@
 #include <stdio.h>
-#include <string.h>
+
 #include <time.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 
 #define STUDENT_NUMBER 26;
 
@@ -159,6 +160,7 @@ void createLinkedListExample()
     {
         dateNode *date = (dateNode *)malloc(sizeof(dateNode));
         date->dateName = dates[i];
+        date->nextData = NULL;
         if (i == 0)
         {
             listHead = date;
@@ -173,22 +175,68 @@ void createLinkedListExample()
     // 第2步验证是否创建成功，遍历列表
     struct dateNode *cursor = listHead;
     printf("\n");
-    // while (cursor != NULL)
-    // {
-    //     printf(" %s ", cursor->dateName);
-    //     cursor = cursor->nextData;
-    // };
+
+    while (cursor != NULL)
+    {
+        printf(" %s ", cursor->dateName);
+        cursor = cursor->nextData;
+    };
+
+    // for(;cursor!=NULL;cursor=cursor->nextData){
+    //      printf(" %s ", cursor->dateName);
+    // }
 
 
-    for(;cursor!=NULL;cursor=cursor->nextData){
-         printf(" %s ", cursor->dateName);
-    }
+//    删除 数值为 “Friday”的节点
 
+   cursor = listHead;
+   struct dateNode *previous = listHead;
+   
+   while(cursor != NULL){
+       if(strcmp(cursor->dateName, "Friday") ==0){
+            //    previous = Thursday   周四的节点的 nextData指向 周六
+               previous->nextData = cursor->nextData;
+               free(cursor);
+               break;
+       }else{
+           previous = cursor;
+           cursor = cursor->nextData;
+       }
+   }
 
-    // int a[][3] = {{1,2,3}};
-    // int a[3][3]={{1,2,3},{4,5,6},{7,8,9}};
+/*()
+    while(cursor != NULL){
+       if(strcmp(cursor->dateName, "Friday") ==0){
+            // if(strcmp(cursor->dateName, dates[4]) ==0){
+        //    当满足 是 “Friday”的是第一个节点，这个时候，要同时更新listHead
+           if(cursor == listHead){
+               listHead = cursor->nextData;
+               cursor->nextData = NULL;
+               free(cursor);
+           }else
+           {
+            //    previous = Thursday   周四的节点的 nextData指向 周六
+               previous->nextData = cursor->nextData;
+               free(cursor);
+           }
+       }else{
+           previous = cursor;
+           cursor = cursor->nextData;
+       }
+
+   }*/
+
+    cursor = listHead;
+    printf("\nthe following list has deleted \"Friday\" ");
+   while (cursor != NULL)
+    {
+        printf(" %s ", cursor->dateName);
+        cursor = cursor->nextData;
+    };
+
 
 }
+
 
 // 5个知识点的示例代码，如要单独看一个，请把其他4个先注释掉
 int main(int argc, char const *argv[])
