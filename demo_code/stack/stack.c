@@ -39,6 +39,7 @@ int pop(MyStack *stack, elementType *poppedValue)
     }
     if (stack->top == -1) //说明栈已经空了
     {
+        // printf()
         return ERROR;
     }
     *poppedValue = stack->data[stack->top];
@@ -72,9 +73,11 @@ void pushOperationInStack(MyStack *pStack)
     push(pStack, 1);
     printf("push element %d\n",1);
     showStack(pStack);
+
     push(pStack, 2);
     printf("push element %d \n",2);
     showStack(pStack);
+
     push(pStack, 3);
     printf("push element %d \n",3);
     showStack(pStack);
@@ -85,9 +88,11 @@ void popOperationInStack(MyStack *pStack)
     elementType value;
     elementType *pValue = &value;
     printf("pop element\n");
+
     pop(pStack, pValue);
     showStack(pStack);
     printf("pop element\n");
+
     pop(pStack, pValue);
     showStack(pStack);
 }
@@ -105,17 +110,51 @@ bool isStackEmpty(MyStack * pStack){
 
 bool findElementInStack(MyStack * pStack ,elementType value){
     return false;
+
+}
+
+int deleteValueInStack(MyStack *pStack, elementType target){
+    if(pStack == NULL){
+        return ERROR;
+    }
+    for (size_t i = 0; i < pStack->top; i++)
+    {
+        int  index = i;
+        if(pStack->data[index] == target){
+
+        }
+        
+    }
+}
+
+// 将数值数值前移
+void move(MyStack *pStack,elementType target,int index){
+    if(pStack == NULL){
+        return;
+    }
+    for (size_t i = index; i < pStack->top; i++)
+    {
+        pStack->data[index] = pStack->data[index+1];
+        /* code */
+    }
+    
 }
 
 int main(int argc, char const *argv[])
 {
     // 创建栈
     MyStack *pStack = createStack();
+    for (size_t i = 0; i < length; i++)
+    {
+        
+    }
+
+
 
     // 入栈操作
-    pushOperationInStack(pStack);
+    // pushOperationInStack(pStack);
 
-    // 出栈操作
+    // // 出栈操作
     // popOperationInStack(pStack);
 
     return 0;

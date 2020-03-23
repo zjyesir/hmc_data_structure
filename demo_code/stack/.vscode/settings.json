@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "stack": "c",
+        "iostream": "c"
     }
 }

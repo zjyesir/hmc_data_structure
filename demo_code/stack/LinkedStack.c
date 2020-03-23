@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#define MAX_SIZE 10
+// #define MAX_SIZE 10
 #define OK 1
 #define ERROR 0
 typedef int elementType; // 这里暂定int为栈中的基本元素，当然可以扩展为更加复杂的struct对象
@@ -97,9 +97,11 @@ void pushOperationInStack(LinkedStack *pStack)
     push(pStack, 1);
     printf("push element %d\n", 1);
     showStack(pStack);
+
     push(pStack, 2);
     printf("push element %d \n", 2);
     showStack(pStack);
+
     push(pStack, 3);
     printf("push element %d \n", 3);
     showStack(pStack);
@@ -110,9 +112,11 @@ void popOperationInStack(LinkedStack *pStack)
     elementType value;
     elementType *pValue = &value;
     printf("pop element\n");
+
     pop(pStack, pValue);
     showStack(pStack);
     printf("pop element\n");
+
     pop(pStack, pValue);
     showStack(pStack);
 }

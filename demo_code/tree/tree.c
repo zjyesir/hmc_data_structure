@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+
+#include<stack>
+#include<queue>
+#include<list>
+
 #define OK 1
 #define ERROR 0
 typedef char elementType; // 这里暂定int为队列中的基本元素，当然可以扩展为更加复杂的struct对象
@@ -88,3 +93,4 @@ int main(int argc, char const *argv[])
     createTreeExample();
     return 0;
 }
+
