@@ -8,6 +8,8 @@
 #include "stdio.h"
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stack>
+#include<iostream>
 #define OK 1
 #define ERROR 0
 #define MAX_QUEUE_SIZE 10
@@ -84,8 +86,6 @@ int enqueue(Queue *queue, elementType value)
     }
     queue->array[queue->rear] = value;
     queue->elementCount++;
-    // 注意顺序，showQueue 里面用到了 queue->rear的数值，所以下面的改变会影响showQueue的结果
-    // 当然这存在耦合，先不管
     
     queue->rear = (queue->rear + 1) % MAX_QUEUE_SIZE;
     printf("\n insert value : %d into the queue",value);
@@ -114,8 +114,6 @@ int dequeue(Queue *queue, elementType *valuePointer)
     }
     printf("\n value : %d out of the queue",queue->array[queue->front]);
     queue->elementCount --;
-    // 同enqueue,注意这个函数的顺序
-    
     queue->front = (queue->front + 1) % MAX_QUEUE_SIZE;
     showQueue(queue);
     return OK;
@@ -181,6 +179,5 @@ int main(int argc, char const *argv[])
 {
    testEnqueueFirstAndDequeue();
 //    testEnqueueAndDequeueInCross();
-
     return 0;
 }
