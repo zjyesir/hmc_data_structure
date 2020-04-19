@@ -5,6 +5,8 @@
 #define OK 1
 #define ERROR 0
 
+
+
 // 我们用顺序存储作为例子
 typedef int elementType; // 这里暂定int为栈中的基本元素，当然可以扩展为更加复杂的struct对象
 typedef struct
@@ -152,7 +154,7 @@ int main(int argc, char const *argv[])
 
 
     // 入栈操作
-    // pushOperationInStack(pStack);
+    pushOperationInStack(pStack);
 
     // // 出栈操作
     // popOperationInStack(pStack);

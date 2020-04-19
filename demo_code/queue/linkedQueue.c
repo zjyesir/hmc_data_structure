@@ -5,7 +5,6 @@
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 
-
 #include "stdio.h"
 #include <stdlib.h>
 #include <stdbool.h>
@@ -91,10 +90,10 @@ int dequeue(LinkedQueue *linkedQueue)
     }
     LinkedQueueNode *poppedNode = linkedQueue->front;
     printf(" \n node which value is : % d is popped out", poppedNode->data);
-    LinkedQueueNode *newFront = poppedNode->next;
-    free(poppedNode);
-    linkedQueue->front = newFront;
+    // LinkedQueueNode *newFront = ;
+    linkedQueue->front = poppedNode->next;
     linkedQueue->length--;
+    free(poppedNode);
     return OK;
 }
 
