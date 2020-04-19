@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#include<stack>
-#include<queue>
-#include<list>
+// #include<stack>
+// #include<queue.h>
+// #include<list>
 
 #define OK 1
 #define ERROR 0
@@ -31,7 +31,6 @@ TreeNode *createTree()
         TreeNode *treeNode = (TreeNode *)malloc(sizeof(TreeNode));
         treeNode->data = value;
         treeNode->lChild = createTree();
-        ;
         treeNode->rChild = createTree();
         return treeNode;
     }
@@ -61,17 +60,30 @@ void createTreeAnotherWay(TreeNode **root)
 }
 
 // 先序遍历递归写法
-void printTree(TreeNode *root)
+void preOrderTraverse(TreeNode *root)
 {
     if (root == NULL)
     {
         return;
     }
     printf("%c ", root->data);
-    printTree(root->lChild);
-    printTree(root->rChild);
+    preOrderTraverse(root->lChild);
+    preOrderTraverse(root->rChild);
 }
 
+// 中序遍历
+void inOrderTraverse(TreeNode *root)
+{
+    // 自己写
+}
+
+// 后序遍历
+void postOrderTraverse(TreeNode *root)
+{
+    // 自己写
+}
+
+// 先序遍历的方式创建树：以父结点，左结点，右结点这样的顺序输入，若子结点空，则以#输入表示
 void createTreeExample()
 {
     printf("please input values to create a tree\n");
@@ -84,7 +96,7 @@ void createTreeExample()
     {
         printf("tree is empty");
     }
-    printTree(root);
+    preOrderTraverse(root);
 }
 
 int main(int argc, char const *argv[])

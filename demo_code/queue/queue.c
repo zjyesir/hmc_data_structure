@@ -8,8 +8,6 @@
 #include "stdio.h"
 #include <stdlib.h>
 #include <stdbool.h>
-#include <stack>
-#include<iostream>
 #define OK 1
 #define ERROR 0
 #define MAX_QUEUE_SIZE 10
@@ -27,7 +25,7 @@ typedef struct Queue
 
 // 判断队列是否满了
 bool isQueueFull(Queue *queue){
-    return  queue!=NULL &&queue->elementCount == MAX_QUEUE_SIZE;
+    return  queue!=NULL && queue->elementCount == MAX_QUEUE_SIZE;
 }
 
 // 判断队列是否空
@@ -88,6 +86,7 @@ int enqueue(Queue *queue, elementType value)
     queue->elementCount++;
     
     queue->rear = (queue->rear + 1) % MAX_QUEUE_SIZE;
+
     printf("\n insert value : %d into the queue",value);
     showQueue(queue);
     
@@ -141,7 +140,7 @@ void testEnqueueFirstAndDequeue(){
         enqueue(queue, i);
     }
     // 出队列
-    for (int i = 0; i < 5; ++i)
+    for (int i = 0; i < 15; ++i)
     {
         elementType *valueP;
         dequeue(queue,valueP);
@@ -158,13 +157,20 @@ void testEnqueueAndDequeueInCross(){
     // showQueue(queue);
     elementType *p ;
     int enqueueValue = 1;
-    dequeue(queue,p);
+    dequeue(queue,p);  //消费者，没东西可消费
+
+     enqueue(queue, enqueueValue++); // 生产者，产东西了
+
+     dequeue(queue,p);//消费者，可以消费
+
      enqueue(queue, enqueueValue++);
+
      dequeue(queue,p);
+
      enqueue(queue, enqueueValue++);
+
      dequeue(queue,p);
-     enqueue(queue, enqueueValue++);
-     dequeue(queue,p);
+
      dequeue(queue,p);
      dequeue(queue,p);
 
@@ -177,7 +183,7 @@ void testEnqueueAndDequeueInCross(){
 
 int main(int argc, char const *argv[])
 {
-   testEnqueueFirstAndDequeue();
-//    testEnqueueAndDequeueInCross();
+//    testEnqueueFirstAndDequeue();
+   testEnqueueAndDequeueInCross();
     return 0;
 }
