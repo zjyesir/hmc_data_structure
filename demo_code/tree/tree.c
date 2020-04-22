@@ -99,6 +99,20 @@ void createTreeExample()
     preOrderTraverse(root);
 }
 
+
+char*compressString(char* s){
+    if(s == NULL){
+        // 
+    }
+    int cursor = 0;
+    while(s[cursor] !='\0'){
+        char currentChar = s[cursor];
+        int innerCursor = cursor;
+        while(s[innerCursor] != '\0') && s[innerCursor]== currentChar){
+            ++innerCursor;
+        }
+    }
+}
 int main(int argc, char const *argv[])
 {
     /* code */
