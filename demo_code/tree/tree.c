@@ -94,15 +94,18 @@ void preOrderTraverse2(TreeNode *root)
     // }
     if (root == NULL)
     {
-         printf("#");
+        //  printf("#");
          return;
     }
     printf("%c ", root->data);
-    printf("\n");
+    // printf("\n");
     preOrderTraverse2(root->lChild);
     preOrderTraverse2(root->rChild);
 }
 
+bool isPreOrder(TreeNode * node,char* str){
+
+}
 
 
 // ÖÐÐò±éÀú
@@ -132,7 +135,7 @@ void createTreeExample()
     }
     // preOrderTraverse(root);
     preOrderTraverse2(root);
-    printf("depth = %d",depth(root));
+    // printf("depth = %d",depth(root));
 }
 
 
